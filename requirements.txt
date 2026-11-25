@@ -1,0 +1,4 @@
+# Runtime (the platform): Python 3.13 on Windows
+Flask==3.1.3
+# Rebuild only (scripts/build_db.py reads the Excel workbooks)
+openpyxl==3.1.5

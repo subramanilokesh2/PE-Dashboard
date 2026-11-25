@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZINNOV | PE Intelligence Command Center</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="wordmark">ZINNOV</div>
+      <div class="product">PE Intelligence Command Center</div>
+      <div class="tagline">Transforming Intelligence into Strategic Opportunities</div>
+    </div>
+    <nav id="nav"></nav>
+    <button class="collapse-btn" id="collapseBtn" type="button" aria-label="Collapse navigation">&#x2039;</button>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="filters" id="filters">
+        <label>Reporting month
+          <select id="fMonth"></select></label>
+        <label>PE firm
+          <select id="fFirm"></select></label>
+        <label>Industry
+          <select id="fIndustry"></select></label>
+        <label>Region
+          <select id="fRegion"></select></label>
+        <span class="filter-count" id="filterCount" aria-live="polite"></span>
+        <button type="button" class="btn ghost" id="resetBtn">Reset filters</button>
+      </div>
+      <div class="coverage" id="coverage"></div>
+    </header>
+    <main id="view" class="view" aria-live="polite"></main>
+  </div>
+
+  <div class="drawer-backdrop" id="backdrop" hidden></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="Close">&times;</button>
+    <div id="drawerBody"></div>
+  </aside>
+  <script src="/static/app.js"></script>
+</body>
+</html>
