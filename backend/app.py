@@ -29,7 +29,38 @@ DATA_CAVEATS = [
 ]
 
 app = Flask(__name__, static_folder=None)
+import os
+import hmac
 
+@app.before_request
+def require_authentication():
+    if not os.environ.get("RENDER"):
+        return None
+
+    username = os.environ.get("DASHBOARD_USERNAME")
+    password = os.environ.get("DASHBOARD_PASSWORD")
+
+    if not username or not password:
+        abort(503)
+
+    auth = request.authorization
+
+    if (
+        auth
+        and hmac.compare_digest(
+            (auth.username or "").encode(), username.encode()
+        )
+        and hmac.compare_digest(
+            (auth.password or "").encode(), password.encode()
+        )
+    ):
+        return None
+
+    return Response(
+        "Authentication required",
+        401,
+        {"WWW-Authenticate": 'Basic realm="PE Intelligence"'}
+    )
 def db():
     con = sqlite3.connect(DB)
     con.row_factory = sqlite3.Row
